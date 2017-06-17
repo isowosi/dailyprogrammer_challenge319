@@ -13,9 +13,7 @@ main() async {
     if (!running) {
       running = true;
       runButton.text = 'Stop';
-      final input = (querySelector('#input') as TextAreaElement)
-          .value
-          .split(new RegExp(r'\s+'));
+      final input = textArea.value.split(new RegExp(r'\s+'));
       final population = int.parse(input[0]);
       final infected = int.parse(input[1]);
       final attributeMap = createAttributeMap(input);
@@ -23,7 +21,7 @@ main() async {
       var rawData = imageData.data;
 
       final List<int> populationIds =
-          new List.generate(population, (index) => index);
+      new List.generate(population, (index) => index);
       populationIds.shuffle();
       for (int i = 0; i < infected; i++) {
         rawData[populationIds[i] * 4] = 255;
@@ -100,5 +98,6 @@ class Attributes {
   double infectionRate;
   double healingRate;
   double patchRate;
+
   Attributes(this.infectionRate, this.healingRate, this.patchRate);
 }
